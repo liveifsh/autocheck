@@ -3,6 +3,7 @@ from setting import *
 from task import Task
 import pandas as pd
 import os
+import linecache
 
 def check(tasks, user):
     sul = os.path.exists(os.path.join(USERS_DIR, user, SUL_NAME))
@@ -30,8 +31,14 @@ def check(tasks, user):
 
                 os.system(f"cd {os.path.join(USERS_DIR, user)}; ./{SUL_NAME}")
                 with open(os.path.join(USERS_DIR, user, "output.txt"), "r") as f:
-                    if f.read() == i[1]:
-                        score_temp += 1
+                    user_answ = f.read()
+                    if task.score_str == -1:
+                        print(user_answ.split("\n")[1])
+                        if user_answ == i[1]:
+                            score_temp += 1
+                    else:
+                        if user_answ.split("\n")[task.score_str] == i[1]:
+                            score_temp += 1
 
                 os.remove(os.path.join(USERS_DIR, user, "input.txt"))
                 os.remove(os.path.join(USERS_DIR, user, "output.txt"))
