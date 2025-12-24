@@ -1,5 +1,8 @@
 # Система проверки заданий.
-## Установка зависимостей: ```pip install -r requirements.txt```
+Мяу
+
+## Установка зависимостей: 
+```pip install -r requirements.txt```
 
 ## Настройка
 settings.py - файл с настройками.
